@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Femmona – Ethnic Wear Redefined</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;600&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fdf8f2;
+    --deep: #1a0a00;
+    --gold: #c9942a;
+    --rust: #9b3a1a;
+    --blush: #f5e6d8;
+    --cream: #faebd7;
+    --text: #2d1a0a;
+    --muted: #7a5c40;
+    --chat-bg: #fffaf5;
+    --border: rgba(201,148,42,0.25);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(253,248,242,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--rust);
+  }
+  .logo span { color: var(--gold); font-style: italic; }
+  nav ul { display: flex; gap: 36px; list-style: none; }
+  nav ul a {
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text); text-decoration: none; transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--rust); color: #fff !important;
+    padding: 10px 24px; border-radius: 2px;
+    letter-spacing: 0.12em !important;
+  }
+  .nav-cta:hover { background: var(--gold) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 60px 80px 80px;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    line-height: 1.08; font-weight: 700;
+    color: var(--deep); margin-bottom: 28px;
+  }
+  .hero h1 em { color: var(--rust); font-style: italic; }
+  .hero p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 300; color: var(--muted);
+    line-height: 1.7; max-width: 420px; margin-bottom: 44px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--rust); color: #fff;
+    padding: 16px 36px; font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: none; border-radius: 2px; cursor: pointer;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--deep); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--text);
+    padding: 16px 36px; font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    border: 2px solid var(--border); border-radius: 2px; cursor: pointer;
+    text-decoration: none; transition: border-color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-visual {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #f5e6d8 0%, #f0d5b8 50%, #e8c49a 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(201,148,42,0.07) 0, rgba(201,148,42,0.07) 1px, transparent 0, transparent 50%),
+      repeating-linear-gradient(-45deg, rgba(155,58,26,0.05) 0, rgba(155,58,26,0.05) 1px, transparent 0, transparent 50%);
+    background-size: 28px 28px;
+  }
+  .hero-centerpiece {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 24px;
+  }
+  .mandala {
+    width: 260px; height: 260px; opacity: 0.18;
+    animation: rotateSlow 60s linear infinite;
+  }
+  @keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+  .product-cards-float {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .pcard {
+    position: absolute; background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px); border-radius: 6px;
+    padding: 14px 18px; box-shadow: 0 8px 30px rgba(26,10,0,0.12);
+    border: 1px solid rgba(201,148,42,0.2);
+    animation: floatCard 6s ease-in-out infinite;
+  }
+  .pcard:nth-child(2) { animation-delay: -2s; }
+  .pcard:nth-child(3) { animation-delay: -4s; }
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .pcard-1 { top: 15%; left: 8%; }
+  .pcard-2 { top: 52%; right: 6%; }
+  .pcard-3 { bottom: 14%; left: 12%; }
+  .pcard-emoji { font-size: 1.8rem; display: block; margin-bottom: 4px; }
+  .pcard-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem; font-weight: 600; color: var(--rust);
+    white-space: nowrap;
+  }
+  .pcard-sub { font-size: 0.7rem; color: var(--muted); white-space: nowrap; }
+
+  /* ── OCCASIONS STRIP ── */
+  .occasions {
+    background: var(--deep); color: #fff;
+    padding: 28px 0; overflow: hidden; white-space: nowrap;
+  }
+  .occasion-track {
+    display: inline-flex; gap: 60px;
+    animation: marquee 30s linear infinite;
+  }
+  .occasion-track span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 300; letter-spacing: 0.1em;
+    opacity: 0.8;
+  }
+  .occasion-track .dot { color: var(--gold); font-size: 0.6rem; align-self: center; }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── COLLECTION GRID ── */
+  .section { padding: 100px 80px; }
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-eyebrow {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 700; color: var(--deep);
+    line-height: 1.15;
+  }
+  .section-title em { color: var(--rust); font-style: italic; }
+
+  .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 32px;
+  }
+  .product-card {
+    border-radius: 4px; overflow: hidden;
+    background: #fff; border: 1px solid var(--border);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(26,10,0,0.12);
+  }
+  .product-img {
+    height: 300px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem;
+    position: relative; overflow: hidden;
+  }
+  .product-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--rust); color: #fff;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 2px;
+  }
+  .product-info { padding: 20px 22px 24px; }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 600; color: var(--deep);
+    margin-bottom: 4px;
+  }
+  .product-occasion {
+    font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .product-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--gold); font-weight: 700;
+  }
+  .product-old {
+    font-size: 0.85rem; color: var(--muted);
+    text-decoration: line-through; margin-left: 8px;
+  }
+
+  /* ── OCCASION SECTION ── */
+  .occasion-section { background: var(--blush); }
+  .occasion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+  }
+  .occ-card {
+    background: #fff; border-radius: 6px;
+    padding: 32px 20px; text-align: center;
+    border: 1px solid var(--border);
+    cursor: pointer; transition: all 0.25s;
+  }
+  .occ-card:hover { background: var(--rust); border-color: var(--rust); }
+  .occ-card:hover .occ-title, .occ-card:hover .occ-count { color: #fff; }
+  .occ-icon { font-size: 2.5rem; margin-bottom: 14px; }
+  .occ-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-weight: 600; color: var(--deep);
+    margin-bottom: 6px; transition: color 0.25s;
+  }
+  .occ-count { font-size: 0.72rem; color: var(--muted); transition: color 0.25s; }
+
+  /* ── FEATURES ── */
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+  }
+  .feature-item { text-align: center; padding: 40px 30px; }
+  .feature-icon { font-size: 2.5rem; margin-bottom: 18px; }
+  .feature-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700; color: var(--deep);
+    margin-bottom: 12px;
+  }
+  .feature-desc { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── CHATBOT ── */
+  #chatToggle {
+    position: fixed; bottom: 32px; right: 32px; z-index: 999;
+    width: 62px; height: 62px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--rust), var(--gold));
+    border: none; cursor: pointer;
+    box-shadow: 0 8px 28px rgba(155,58,26,0.45);
+    font-size: 1.6rem; transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #chatToggle:hover { transform: scale(1.08); box-shadow: 0 12px 36px rgba(155,58,26,0.55); }
+
+  #chatWindow {
+    position: fixed; bottom: 108px; right: 32px; z-index: 998;
+    width: 380px; height: 580px;
+    background: var(--chat-bg);
+    border-radius: 16px; overflow: hidden;
+    box-shadow: 0 24px 80px rgba(26,10,0,0.22);
+    border: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    opacity: 0; pointer-events: none;
+    transform: translateY(20px) scale(0.96);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #chatWindow.open {
+    opacity: 1; pointer-events: all;
+    transform: translateY(0) scale(1);
+  }
+  .chat-header {
+    background: linear-gradient(135deg, var(--rust) 0%, #7a2a0e 100%);
+    padding: 18px 20px; color: #fff;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .chat-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; flex-shrink: 0;
+  }
+  .chat-header-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+  }
+  .chat-header-info p { font-size: 0.72rem; opacity: 0.75; }
+  .chat-status {
+    margin-left: auto; display: flex; align-items: center; gap: 6px;
+    font-size: 0.7rem; opacity: 0.85;
+  }
+  .status-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #4ade80; animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+
+  .chat-messages {
+    flex: 1; overflow-y: auto; padding: 20px 16px;
+    display: flex; flex-direction: column; gap: 14px;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  .msg { display: flex; gap: 8px; max-width: 90%; }
+  .msg.user { align-self: flex-end; flex-direction: row-reverse; }
+  .msg-bubble {
+    padding: 11px 15px; border-radius: 16px;
+    font-size: 0.875rem; line-height: 1.55;
+  }
+  .msg.bot .msg-bubble {
+    background: #fff; color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 4px 16px 16px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  .msg.user .msg-bubble {
+    background: linear-gradient(135deg, var(--rust), #7a2a0e);
+    color: #fff;
+    border-radius: 16px 4px 16px 16px;
+  }
+  .msg-av {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--blush); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
+  }
+
+  .quick-replies {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    padding: 0 16px 12px;
+  }
+  .qr {
+    background: #fff; color: var(--rust);
+    border: 1px solid rgba(155,58,26,0.3);
+    border-radius: 20px; padding: 7px 14px;
+    font-size: 0.78rem; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .qr:hover { background: var(--rust); color: #fff; }
+
+  .chat-input-area {
+    padding: 12px 16px; border-top: 1px solid var(--border);
+    display: flex; gap: 10px; background: #fff;
+  }
+  #chatInput {
+    flex: 1; border: 1px solid var(--border); border-radius: 24px;
+    padding: 11px 18px; font-size: 0.875rem; font-family: inherit;
+    outline: none; color: var(--text); background: var(--bg);
+  }
+  #chatInput:focus { border-color: var(--gold); }
+  #sendBtn {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--rust); color: #fff; border: none;
+    cursor: pointer; font-size: 1rem; flex-shrink: 0;
+    transition: background 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #sendBtn:hover { background: var(--gold); }
+
+  .typing {
+    display: flex; gap: 4px; align-items: center;
+    padding: 10px 14px;
+  }
+  .typing span {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--muted);
+    animation: typingDot 1.4s infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingDot { 0%,60%,100% { opacity:0.3; transform:scale(1); } 30% { opacity:1; transform:scale(1.3); } }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep); color: rgba(255,255,255,0.7);
+    padding: 60px 80px 36px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand .logo { color: #f5e6d8; font-size: 1.8rem; display: block; margin-bottom: 16px; }
+  .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 260px; }
+  .footer-col h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.9);
+    letter-spacing: 0.08em; margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a {
+    color: rgba(255,255,255,0.55); font-size: 0.83rem;
+    text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 28px; display: flex; align-items: center;
+    justify-content: space-between; font-size: 0.78rem; opacity: 0.5;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { height: 340px; }
+    .section { padding: 60px 24px; }
+    nav { padding: 14px 20px; }
+    nav ul { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    #chatWindow { width: calc(100vw - 40px); right: 20px; }
+  }
+</style>
+</head>
+<body>
+<!-- ── NAVIGATION ── -->
+<nav>
+  <div class="logo">Femmo<span>na</span></div>
+  <ul>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#occasions">Occasions</a></li>
+    <li><a href="#new">New Arrivals</a></li>
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#chatToggle" class="nav-cta" onclick="openChat()">Style Advisor</a></li>
+  </ul>
+</nav>
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">✦ Handcrafted Ethnic Elegance</p>
+    <h1>Where <em>Heritage</em> Meets Modern Grace</h1>
+    <p>Curated ethnic wear for every celebration — from bridal grandeur to festive joy. Let our AI stylist guide you to your perfect look.</p>
+    <div class="hero-btns">
+      <a href="#collections" class="btn-primary">Shop Collections</a>
+      <a href="#" class="btn-secondary" onclick="openChat(); return false;">✨ AI Style Advisor</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-pattern"></div>
+    <div class="hero-centerpiece">
+      <svg class="mandala" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#9b3a1a" stroke-width="1"/>
+        <circle cx="100" cy="100" r="70" fill="none" stroke="#c9942a" stroke-width="0.8"/>
+        <circle cx="100" cy="100" r="50" fill="none" stroke="#9b3a1a" stroke-width="1"/>
+        <circle cx="100" cy="100" r="30" fill="none" stroke="#c9942a" stroke-width="0.8"/>
+        <circle cx="100" cy="100" r="10" fill="#c9942a" opacity="0.4"/>
+        <g stroke="#9b3a1a" stroke-width="0.6" fill="none">
+          <line x1="100" y1="10" x2="100" y2="190"/>
+          <line x1="10" y1="100" x2="190" y2="100"/>
+          <line x1="27" y1="27" x2="173" y2="173"/>
+          <line x1="173" y1="27" x2="27" y2="173"/>
+        </g>
+        <g fill="#c9942a" opacity="0.5">
+          <polygon points="100,20 106,34 100,30 94,34"/>
+          <polygon points="100,180 106,166 100,170 94,166"/>
+          <polygon points="20,100 34,94 30,100 34,106"/>
+          <polygon points="180,100 166,94 170,100 166,106"/>
+          <polygon points="40,40 52,46 46,52 40,40"/>
+          <polygon points="160,40 148,46 154,52 160,40"/>
+          <polygon points="40,160 52,154 46,148 40,160"/>
+          <polygon points="160,160 148,154 154,148 160,160"/>
+        </g>
+      </svg>
+    </div>
+    <div class="product-cards-float">
+      <div class="pcard pcard-1">
+        <span class="pcard-emoji">👘</span>
+        <div class="pcard-label">Banarasi Silk Saree</div>
+        <div class="pcard-sub">Wedding · ₹12,499</div>
+      </div>
+      <div class="pcard pcard-2">
+        <span class="pcard-emoji">🌸</span>
+        <div class="pcard-label">Anarkali Suit</div>
+        <div class="pcard-sub">Festive · ₹4,999</div>
+      </div>
+      <div class="pcard pcard-3">
+        <span class="pcard-emoji">✨</span>
+        <div class="pcard-label">Lehenga Choli</div>
+        <div class="pcard-sub">Reception · ₹18,999</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ── OCCASIONS MARQUEE ── -->
+<div class="occasions">
+  <div class="occasion-track">
+    <span>Wedding</span><span class="dot">◆</span>
+    <span>Navratri</span><span class="dot">◆</span>
+    <span>Diwali</span><span class="dot">◆</span>
+    <span>Eid</span><span class="dot">◆</span>
+    <span>Sangeet</span><span class="dot">◆</span>
+    <span>Mehndi</span><span class="dot">◆</span>
+    <span>Puja Ceremony</span><span class="dot">◆</span>
+    <span>Haldi</span><span class="dot">◆</span>
+    <span>Reception</span><span class="dot">◆</span>
+    <span>Karwa Chauth</span><span class="dot">◆</span>
+    <span>Casual</span><span class="dot">◆</span>
+    <span>College Fest</span><span class="dot">◆</span>
+    <span>Wedding</span><span class="dot">◆</span>
+    <span>Navratri</span><span class="dot">◆</span>
+    <span>Diwali</span><span class="dot">◆</span>
+    <span>Eid</span><span class="dot">◆</span>
+    <span>Sangeet</span><span class="dot">◆</span>
+    <span>Mehndi</span><span class="dot">◆</span>
+    <span>Puja Ceremony</span><span class="dot">◆</span>
+    <span>Haldi</span><span class="dot">◆</span>
+  </div>
+</div>
+<!-- ── COLLECTIONS ── -->
+<section class="section" id="collections">
+  <div class="section-header">
+    <p class="section-eyebrow">✦ New Season</p>
+    <h2 class="section-title">Featured <em>Collections</em></h2>
+  </div>
+  <div class="collection-grid">
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#f9e8d0,#f0c8a0)">
+        <span>👘</span>
+        <span class="product-badge">Bestseller</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Banarasi Silk Saree</div>
+        <div class="product-occasion">Wedding · Bridal</div>
+        <div><span class="product-price">₹12,499</span><span class="product-old">₹16,000</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#fce4ec,#f8bbd9)">
+        <span>🌸</span>
+        <span class="product-badge">New</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Floral Anarkali Suit</div>
+        <div class="product-occasion">Festive · Eid</div>
+        <div><span class="product-price">₹4,999</span><span class="product-old">₹6,500</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)">
+        <span>💚</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Chanderi Lehenga</div>
+        <div class="product-occasion">Sangeet · Mehendi</div>
+        <div><span class="product-price">₹9,299</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#ede7f6,#d1c4e9)">
+        <span>💜</span>
+        <span class="product-badge">Trending</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Embroidered Kurti Set</div>
+        <div class="product-occasion">Navratri · Casual</div>
+        <div><span class="product-price">₹2,799</span><span class="product-old">₹3,500</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2)">
+        <span>🧡</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Kanjivaram Saree</div>
+        <div class="product-occasion">Temple · Wedding</div>
+        <div><span class="product-price">₹22,999</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#fce4ec,#e1bee7)">
+        <span>👑</span>
+        <span class="product-badge">Bridal</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Bridal Lehenga Set</div>
+        <div class="product-occasion">Wedding · Reception</div>
+        <div><span class="product-price">₹38,999</span><span class="product-old">₹52,000</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb)">
+        <span>🔵</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Bandhani Dupatta Set</div>
+        <div class="product-occasion">Haldi · Festive</div>
+        <div><span class="product-price">₹3,499</span></div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img" style="background:linear-gradient(135deg,#f1f8e9,#dcedc8)">
+        <span>🌿</span>
+        <span class="product-badge">Eco-Friendly</span>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Khadi Salwar Suit</div>
+        <div class="product-occasion">Casual · Office</div>
+        <div><span class="product-price">₹1,899</span><span class="product-old">₹2,500</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ── OCCASIONS ── -->
+<section class="section occasion-section" id="occasions">
+  <div class="section-header">
+    <p class="section-eyebrow">✦ Shop by Occasion</p>
+    <h2 class="section-title">Dress for Every <em>Celebration</em></h2>
+  </div>
+  <div class="occasion-grid">
+    <div class="occ-card" onclick="chatSuggest('Wedding')">
+      <div class="occ-icon">💍</div>
+      <div class="occ-title">Wedding</div>
+      <div class="occ-count">240+ styles</div>
+    </div>
+    <div class="occ-card" onclick="chatSuggest('Navratri')">
+      <div class="occ-icon">🪔</div>
+      <div class="occ-title">Navratri</div>
+      <div class="occ-count">180+ styles</div>
+    </div>
+    <div class="occ-card" onclick="chatSuggest('Diwali')">
+      <div class="occ-icon">🎆</div>
+      <div class="occ-title">Diwali</div>
+      <div class="occ-count">150+ styles</div>
+    </div>
+    <div class="occ-card" onclick="chatSuggest('Eid')">
+      <div class="occ-icon">🌙</div>
+      <div class="occ-title">Eid</div>
+      <div class="occ-count">120+ styles</div>
+    </div>
+    <div class="occ-card" onclick="chatSuggest('Sangeet')">
+      <div class="occ-icon">🎶</div>
+      <div class="occ-title">Sangeet</div>
+      <div class="occ-count">90+ styles</div>
+    </div>
+    <div class="occ-card" onclick="chatSuggest('Casual ethnic wear')">
+      <div class="occ-icon">☀️</div>
+      <div class="occ-title">Casual</div>
+      <div class="occ-count">320+ styles</div>
+    </div>
+  </div>
+</section>
+<!-- ── FEATURES ── -->
+<section class="section">
+  <div class="section-header">
+    <p class="section-eyebrow">✦ Why Femmona</p>
+    <h2 class="section-title">Crafted with <em>Love</em></h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feature-icon">🤝</div>
+      <div class="feature-title">Artisan Craftsmanship</div>
+      <p class="feature-desc">Every piece is handcrafted by master artisans using age-old techniques passed down through generations.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">✨</div>
+      <div class="feature-title">AI Style Advisor</div>
+      <p class="feature-desc">Our AI-powered chatbot understands your occasion, budget, and body type to suggest your perfect ethnic look.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🚚</div>
+      <div class="feature-title">Free Pan-India Delivery</div>
+      <p class="feature-desc">Complimentary shipping on all orders above ₹999. Delivered safely within 4–7 working days.</p>
+    </div>
+  </div>
+</section>
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Femmo<span style="color:var(--gold);font-style:italic">na</span></span>
+      <p>Celebrating India's textile heritage through contemporary ethnic wear. Wear your culture, wear your story.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="#">Sarees</a></li>
+        <li><a href="#">Lehengas</a></li>
+        <li><a href="#">Salwar Suits</a></li>
+        <li><a href="#">Kurtis</a></li>
+        <li><a href="#">Bridal Wear</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Care Instructions</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Artisans</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Femmona. All rights reserved.</span>
+    <span>Made with ♥ for Indian Women</span>
+  </div>
+</footer>
+<!-- ── CHATBOT TOGGLE ── -->
+<button id="chatToggle" onclick="toggleChat()" title="Style Advisor">🪷</button>
+
+<!-- ── CHAT WINDOW ── -->
+<div id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-avatar">🪷</div>
+    <div class="chat-header-info">
+      <h3>Priya – Style Advisor</h3>
+      <p>Femmona AI · Ethnic Wear Expert</p>
+    </div>
+    <div class="chat-status">
+      <div class="status-dot"></div>
+      <span>Online</span>
+    </div>
+  </div>
+  <div class="chat-messages" id="chatMessages"></div>
+  <div class="quick-replies" id="quickReplies"></div>
+  <div class="chat-input-area">
+    <input id="chatInput" type="text" placeholder="Ask about any outfit or occasion…" onkeydown="if(event.key==='Enter') sendMessage()" />
+    <button id="sendBtn" onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
+<script>
+// ── DATABASE SIMULATION (matches SQL schema) ──
+const DB = {
+  products: [
+    { id:1, name:"Banarasi Silk Saree", category:"saree", occasion:["wedding","bridal","reception"], budget:"premium", price:12499, fabric:"Banarasi Silk", colors:["red","gold","maroon"] },
+    { id:2, name:"Floral Anarkali Suit", category:"anarkali", occasion:["festive","eid","diwali"], budget:"mid", price:4999, fabric:"Georgette", colors:["pink","lavender","green"] },
+    { id:3, name:"Chanderi Lehenga", category:"lehenga", occasion:["sangeet","mehendi","festive"], budget:"mid", price:9299, fabric:"Chanderi", colors:["green","yellow","peach"] },
+    { id:4, name:"Embroidered Kurti Set", category:"kurti", occasion:["navratri","casual","college"], budget:"budget", price:2799, fabric:"Cotton", colors:["purple","orange","blue"] },
+    { id:5, name:"Kanjivaram Saree", category:"saree", occasion:["wedding","temple","bridal"], budget:"luxury", price:22999, fabric:"Kanjivaram Silk", colors:["orange","green","blue"] },
+    { id:6, name:"Bridal Lehenga Set", category:"lehenga", occasion:["wedding","reception","bridal"], budget:"luxury", price:38999, fabric:"Velvet & Zari", colors:["red","pink","gold"] },
+    { id:7, name:"Bandhani Dupatta Set", category:"salwar", occasion:["haldi","festive","casual"], budget:"budget", price:3499, fabric:"Bandhani Cotton", colors:["yellow","orange","blue"] },
+    { id:8, name:"Khadi Salwar Suit", category:"salwar", occasion:["casual","office","daily"], budget:"budget", price:1899, fabric:"Khadi", colors:["white","beige","grey"] },
+  ],
+  occasions: ["wedding","festive","casual","sangeet","navratri","eid","diwali","reception","mehndi","bridal"],
+  budgets: {budget:"Under ₹3,000", mid:"₹3,000–₹10,000", premium:"₹10,000–₹25,000", luxury:"Above ₹25,000"}
+};
+
+function getRecommendations(occasion, budget) {
+  let results = DB.products.filter(p =>
+    (!occasion || p.occasion.some(o => o.toLowerCase().includes(occasion.toLowerCase()))) &&
+    (!budget || p.budget === budget)
+  );
+  if (!results.length) results = DB.products.filter(p =>
+    p.occasion.some(o => o.toLowerCase().includes(occasion?.toLowerCase() || ''))
+  ).slice(0,3);
+  return results.slice(0,3);
+}
+
+// ── CONVERSATION STATE ──
+let state = { step: "welcome", occasion: null, budget: null };
+let chatOpen = false;
+
+function toggleChat() { chatOpen ? closeChat() : openChat(); }
+function openChat() {
+  chatOpen = true;
+  document.getElementById('chatWindow').classList.add('open');
+  if (!document.getElementById('chatMessages').children.length) initChat();
+}
+function closeChat() {
+  chatOpen = false;
+  document.getElementById('chatWindow').classList.remove('open');
+}
+
+function initChat() {
+  addBotMsg("Namaste! 🙏 I'm **Priya**, your personal ethnic wear stylist at Femmona.\n\nI'll help you find the perfect outfit for any occasion. Let's start — what are you shopping for today?");
+  setQuickReplies(["💍 Wedding", "🪔 Navratri / Festive", "👗 Casual Wear", "💒 Bridal", "🌙 Eid / Mehndi"]);
+}
+
+function addBotMsg(text, delay=0) {
+  const msgs = document.getElementById('chatMessages');
+  // typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'msg bot';
+  typing.innerHTML = `<div class="msg-av">🪷</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  typing.id = 'typingIndicator';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    typing.remove();
+    const el = document.createElement('div');
+    el.className = 'msg bot';
+    el.innerHTML = `<div class="msg-av">🪷</div><div class="msg-bubble">${formatMsg(text)}</div>`;
+    msgs.appendChild(el);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 900 + delay);
+}
+
+function addUserMsg(text) {
+  const msgs = document.getElementById('chatMessages');
+  const el = document.createElement('div');
+  el.className = 'msg user';
+  el.innerHTML = `<div class="msg-bubble">${text}</div><div class="msg-av">👤</div>`;
+  msgs.appendChild(el);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function formatMsg(text) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+}
+
+function setQuickReplies(options) {
+  const qr = document.getElementById('quickReplies');
+  qr.innerHTML = '';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'qr';
+    btn.textContent = opt;
+    btn.onclick = () => { sendMessage(opt); };
+    qr.appendChild(btn);
+  });
+}
+
+function clearQuickReplies() {
+  document.getElementById('quickReplies').innerHTML = '';
+}
+
+async function sendMessage(override) {
+  const input = document.getElementById('chatInput');
+  const text = override || input.value.trim();
+  if (!text) return;
+  input.value = '';
+  clearQuickReplies();
+  addUserMsg(text);
+  await processMessage(text);
+}
+
+async function processMessage(text) {
+  const lower = text.toLowerCase();
+
+  // ── STEP 1: Detect Occasion ──
+  const occasionMap = {
+    wedding:["wedding","bridal","reception","shaadi","vivah"],
+    festive:["diwali","navratri","festive","garba","puja","teej","karwa"],
+    casual:["casual","daily","office","college","everyday"],
+    sangeet:["sangeet","dance"],
+    mehndi:["mehndi","mehendi","haldi"],
+    eid:["eid","mehndi","iftar"],
+  };
+  let detectedOccasion = null;
+  for (const [occ, kws] of Object.entries(occasionMap)) {
+    if (kws.some(kw => lower.includes(kw))) { detectedOccasion = occ; break; }
+  }
+  if (!detectedOccasion) {
+    // strip emojis and try plain text
+    const stripped = text.replace(/[^\w\s]/g, '').toLowerCase();
+    for (const occ of DB.occasions) {
+      if (stripped.includes(occ)) { detectedOccasion = occ; break; }
+    }
+  }
+
+  // ── STEP 2: Detect Budget ──
+  const budgetMap = {
+    budget:["budget","cheap","affordable","low","under 3000","₹1","₹2","₹3"],
+    mid:["mid","moderate","medium","₹4","₹5","₹6","₹7","₹8","₹9","4000","5000"],
+    premium:["premium","₹10","₹12","₹15","10000","15000"],
+    luxury:["luxury","bridal","expensive","₹20","₹25","₹30","₹38","20000","25000"]
+  };
+  let detectedBudget = null;
+  for (const [b, kws] of Object.entries(budgetMap)) {
+    if (kws.some(kw => lower.includes(kw))) { detectedBudget = b; break; }
+  }
+
+  // Update state
+  if (detectedOccasion) state.occasion = detectedOccasion;
+  if (detectedBudget) state.budget = detectedBudget;
+
+  // ── FLOW LOGIC ──
+  if (!state.occasion) {
+    addBotMsg("That sounds lovely! ✨ Could you tell me — what's the **occasion** you're dressing for?");
+    setQuickReplies(["💍 Wedding", "🪔 Diwali / Navratri", "👗 Casual", "💒 Bridal", "🌙 Eid", "🎶 Sangeet"]);
+    return;
+  }
+
+  if (!state.budget) {
+    const occ = state.occasion.charAt(0).toUpperCase() + state.occasion.slice(1);
+    addBotMsg(`Great choice! Shopping for **${occ}** 🎉\n\nWhat's your approximate **budget**?`);
+    setQuickReplies(["💚 Under ₹3,000", "💛 ₹3,000–₹10,000", "🧡 ₹10,000–₹25,000", "❤️ ₹25,000+"]);
+    return;
+  }
+
+  // Both collected — give recommendation
+  const recs = getRecommendations(state.occasion, state.budget);
+  if (recs.length) {
+    let msg = `Perfect! 🌟 Based on your **${state.occasion}** occasion and **${DB.budgets[state.budget]}** budget, here are my top picks for you:\n\n`;
+    recs.forEach((p, i) => {
+      msg += `**${i+1}. ${p.name}**\nFabric: ${p.fabric} · Price: ₹${p.price.toLocaleString()}\n\n`;
+    });
+    msg += `Would you like to know more about any of these, or shall I suggest based on a different occasion? 💕`;
+    addBotMsg(msg);
+    setQuickReplies(["🛍️ More Details", "🔄 Different Occasion", "💬 Ask About Fabrics", "🎨 Filter by Color"]);
+    state = { step: "recommended", occasion: null, budget: null }; // reset for next
+  } else {
+    addBotMsg(`Hmm, I couldn't find an exact match for that combo. Let me suggest some of our most loved picks for **${state.occasion}**!\n\nShall I show all available styles?`);
+    setQuickReplies(["✅ Yes, show me all", "🔄 Change Occasion", "💬 Talk to a Human Stylist"]);
+    state.budget = null;
+  }
+}
+
+function chatSuggest(occasion) {
+  openChat();
+  setTimeout(() => {
+    addUserMsg(occasion);
+    state.occasion = occasion.toLowerCase();
+    state.budget = null;
+    addBotMsg(`Wonderful! Shopping for **${occasion}** 💫\n\nWhat's your **budget** range?`);
+    setQuickReplies(["💚 Under ₹3,000", "💛 ₹3,000–₹10,000", "🧡 ₹10,000–₹25,000", "❤️ ₹25,000+"]);
+  }, 400);
+}
+</script>
+
+</body>
+</html>

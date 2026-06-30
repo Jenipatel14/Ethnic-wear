@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="femmoraApp">
+<head>
+  <title>Femmora – The Ethnic Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-controller="MainCtrl">
+
+<!-- HEADER -->
+<header>
+  <h1>Femmora</h1>
+  <p class="tagline">The Ethnic Gallery</p>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h2>Timeless Traditions, Elegant You</h2>
+  <p>Discover premium ethnic sarees crafted with grace.</p>
+</section>
+
+<!-- PRODUCTS -->
+<h2 class="section-title">Shop Sarees</h2>
+<div class="products">
+  <div class="card" ng-repeat="p in products">
+    <img ng-src="{{p.image}}">
+    <h3>{{p.name}}</h3>
+    <p class="price">₹{{p.price}}</p>
+    <button ng-click="addToCart(p)">Add to Cart</button>
+  </div>
+</div>
+
+<!-- CART -->
+<h2 class="section-title">Your Cart</h2>
+<ul class="cart">
+  <li ng-repeat="c in cart">
+    {{c.name}} – ₹{{c.price}}
+  </li>
+</ul>
+
+<p class="total">Total: ₹{{total()}}</p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
