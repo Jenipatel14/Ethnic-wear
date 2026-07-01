@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Femmona – Ethnic Wear Redefined</title>
+<title>FLORA | Ethnic Wear Redefined</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;600&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
 <style>
   :root {
@@ -37,11 +37,92 @@
     border-bottom: 1px solid var(--border);
   }
   .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem; font-weight: 700; letter-spacing: 0.04em;
-    color: var(--rust);
+    display: inline-flex;
+    align-items: center;
+    color: #1f493c;
+    text-decoration: none;
   }
-  .logo span { color: var(--gold); font-style: italic; }
+  .floral-logo {
+    position: relative;
+    display: inline-block;
+    min-width: 170px;
+    padding: 8px 34px 18px 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.15rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.07em;
+    color: #143d33;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  }
+  .logo-name {
+    position: relative;
+    z-index: 3;
+  }
+  .floral-logo::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    bottom: 4px;
+    width: 132px;
+    height: 34px;
+    border-bottom: 3px solid #4f806c;
+    border-radius: 0 0 70% 50%;
+    transform: rotate(-6deg);
+    opacity: 0.85;
+  }
+  .floral-logo::after {
+    content: '';
+    position: absolute;
+    right: 7px;
+    top: -12px;
+    width: 30px;
+    height: 42px;
+    background: radial-gradient(ellipse at 50% 78%, #cf7685 0 18%, transparent 19%),
+      radial-gradient(ellipse at 30% 42%, #f4b8c4 0 37%, transparent 38%),
+      radial-gradient(ellipse at 64% 40%, #eaa3b3 0 38%, transparent 39%),
+      radial-gradient(ellipse at 48% 20%, #f8c9d2 0 34%, transparent 35%);
+    transform: rotate(12deg);
+  }
+  .logo-flower-left,
+  .logo-leaf-one,
+  .logo-leaf-two {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+  }
+  .logo-flower-left {
+    left: 46px;
+    bottom: 18px;
+    width: 26px;
+    height: 24px;
+    background: radial-gradient(ellipse at 35% 62%, #f1aebd 0 48%, transparent 49%),
+      radial-gradient(ellipse at 66% 50%, #d77d8e 0 42%, transparent 43%);
+    border-radius: 70% 30% 70% 30%;
+    transform: rotate(-18deg);
+    opacity: 0.92;
+  }
+  .logo-leaf-one {
+    left: 10px;
+    top: 0;
+    width: 18px;
+    height: 54px;
+    background: linear-gradient(145deg, #1f493c, #86a184);
+    border-radius: 90% 10% 90% 10%;
+    transform: rotate(18deg);
+    opacity: 0.9;
+  }
+  .logo-leaf-two {
+    left: 66px;
+    bottom: 1px;
+    width: 54px;
+    height: 16px;
+    background: linear-gradient(120deg, #315f4f, #8fa98e);
+    border-radius: 100% 0 100% 0;
+    transform: rotate(-10deg);
+    opacity: 0.9;
+  }
   nav ul { display: flex; gap: 36px; list-style: none; }
   nav ul a {
     font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
@@ -54,6 +135,161 @@
     letter-spacing: 0.12em !important;
   }
   .nav-cta:hover { background: var(--gold) !important; color: #fff !important; }
+  .cart-link {
+    position: relative;
+  }
+  .cart-count {
+    position: absolute;
+    top: -12px;
+    right: -16px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.68rem;
+    line-height: 1;
+  }
+
+  .add-cart-btn {
+    width: 100%;
+    margin-top: 16px;
+    background: var(--rust);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 12px 16px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .add-cart-btn:hover {
+    background: var(--deep);
+    transform: translateY(-1px);
+  }
+
+  /* MyCart */
+  .cart-section { background: #fffaf5; border-top: 1px solid var(--border); }
+  .cart-wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .cart-empty {
+    padding: 34px 24px;
+    text-align: center;
+    color: var(--muted);
+  }
+  .cart-items { display: flex; flex-direction: column; }
+  .cart-item {
+    display: grid;
+    grid-template-columns: 58px 1fr auto auto;
+    gap: 18px;
+    align-items: center;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cart-item:last-child { border-bottom: none; }
+  .cart-thumb {
+    width: 58px;
+    height: 58px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, var(--blush), var(--cream));
+    color: var(--rust);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .cart-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--deep);
+  }
+  .cart-meta {
+    margin-top: 3px;
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .cart-qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .qty-btn,
+  .remove-btn {
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: 700;
+  }
+  .qty-btn {
+    width: 30px;
+    height: 30px;
+  }
+  .remove-btn {
+    padding: 8px 12px;
+    color: var(--rust);
+  }
+  .cart-line-price {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-weight: 700;
+    text-align: right;
+    min-width: 90px;
+  }
+  .cart-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px;
+    background: var(--blush);
+    border-top: 1px solid var(--border);
+  }
+  .cart-total-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .cart-total {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--deep);
+    font-weight: 700;
+  }
+  .checkout-btn {
+    background: var(--rust);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 13px 24px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .checkout-btn:hover { background: var(--deep); }
 
   /* ── HERO ── */
   .hero {
@@ -397,7 +633,9 @@
     padding: 60px 80px 36px;
   }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-  .footer-brand .logo { color: #f5e6d8; font-size: 1.8rem; display: block; margin-bottom: 16px; }
+  .footer-brand .logo { margin-bottom: 18px; }
+  .footer-brand .floral-logo { color: #f5e6d8; font-size: 2.15rem; }
+  .footer-brand .floral-logo::before { border-bottom-color: rgba(245,230,216,0.7); }
   .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 260px; }
   .footer-col h4 {
     font-family: 'Cormorant Garamond', serif;
@@ -426,18 +664,22 @@
     .features-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     #chatWindow { width: calc(100vw - 40px); right: 20px; }
+    .cart-item { grid-template-columns: 50px 1fr; }
+    .cart-qty, .cart-line-price { grid-column: 2; justify-content: flex-start; text-align: left; }
+    .cart-summary { flex-direction: column; align-items: stretch; }
   }
 </style>
 </head>
 <body>
 <!-- ── NAVIGATION ── -->
 <nav>
-  <div class="logo">Femmo<span>na</span></div>
+  <a class="logo" href="#"><span class="floral-logo"><span class="logo-name">FLORA</span><span class="logo-leaf-one"></span><span class="logo-flower-left"></span><span class="logo-leaf-two"></span></span></a>
   <ul>
     <li><a href="#collections">Collections</a></li>
     <li><a href="#occasions">Occasions</a></li>
     <li><a href="#new">New Arrivals</a></li>
-    <li><a href="#about">Our Story</a></li>
+    <li><a href="#mycart" class="cart-link">MyCart <span class="cart-count" id="cartCount">0</span></a></li>
+    <li><a href="login.html" class="nav-cta">Login</a></li>
     <li><a href="#chatToggle" class="nav-cta" onclick="openChat()">Style Advisor</a></li>
   </ul>
 </nav>
@@ -449,6 +691,7 @@
     <p>Curated ethnic wear for every celebration — from bridal grandeur to festive joy. Let our AI stylist guide you to your perfect look.</p>
     <div class="hero-btns">
       <a href="#collections" class="btn-primary">Shop Collections</a>
+      <a href="login.html" class="btn-secondary">🔐 Login</a>
       <a href="#" class="btn-secondary" onclick="openChat(); return false;">✨ AI Style Advisor</a>
     </div>
   </div>
@@ -539,6 +782,7 @@
         <div class="product-name">Banarasi Silk Saree</div>
         <div class="product-occasion">Wedding · Bridal</div>
         <div><span class="product-price">₹12,499</span><span class="product-old">₹16,000</span></div>
+        <button class="add-cart-btn" onclick="addToCart(1); event.stopPropagation();">Add to Cart</button>
       </div>
     </div>
     <div class="product-card">
@@ -550,6 +794,7 @@
         <div class="product-name">Floral Anarkali Suit</div>
         <div class="product-occasion">Festive · Eid</div>
         <div><span class="product-price">₹4,999</span><span class="product-old">₹6,500</span></div>
+        <button class="add-cart-btn" onclick="addToCart(2); event.stopPropagation();">Add to Cart</button>
       </div>
     </div>
     <div class="product-card">
@@ -560,6 +805,7 @@
         <div class="product-name">Chanderi Lehenga</div>
         <div class="product-occasion">Sangeet · Mehendi</div>
         <div><span class="product-price">₹9,299</span></div>
+        <button class="add-cart-btn" onclick="addToCart(3); event.stopPropagation();">Add to Cart</button>
       </div>
     </div>
     <div class="product-card">
@@ -571,6 +817,7 @@
         <div class="product-name">Embroidered Kurti Set</div>
         <div class="product-occasion">Navratri · Casual</div>
         <div><span class="product-price">₹2,799</span><span class="product-old">₹3,500</span></div>
+        <button class="add-cart-btn" onclick="addToCart(4); event.stopPropagation();">Add to Cart</button>
       </div>
     </div>
     <div class="product-card">
@@ -581,6 +828,7 @@
         <div class="product-name">Kanjivaram Saree</div>
         <div class="product-occasion">Temple · Wedding</div>
         <div><span class="product-price">₹22,999</span></div>
+        <button class="add-cart-btn" onclick="addToCart(5); event.stopPropagation();">Add to Cart</button>
       </div>
     </div>
     <div class="product-card">
@@ -592,6 +840,7 @@
         <div class="product-name">Bridal Lehenga Set</div>
         <div class="product-occasion">Wedding · Reception</div>
         <div><span class="product-price">₹38,999</span><span class="product-old">₹52,000</span></div>
+        <button class="add-cart-btn" onclick="addToCart(6); event.stopPropagation();">Add to Cart</button>
       </div>
     </div>
     <div class="product-card">
@@ -602,6 +851,7 @@
         <div class="product-name">Bandhani Dupatta Set</div>
         <div class="product-occasion">Haldi · Festive</div>
         <div><span class="product-price">₹3,499</span></div>
+        <button class="add-cart-btn" onclick="addToCart(7); event.stopPropagation();">Add to Cart</button>
       </div>
     </div>
     <div class="product-card">
@@ -613,11 +863,31 @@
         <div class="product-name">Khadi Salwar Suit</div>
         <div class="product-occasion">Casual · Office</div>
         <div><span class="product-price">₹1,899</span><span class="product-old">₹2,500</span></div>
+        <button class="add-cart-btn" onclick="addToCart(8); event.stopPropagation();">Add to Cart</button>
       </div>
     </div>
   </div>
 </section>
 <!-- ── OCCASIONS ── -->
+<!-- MY CART -->
+<section class="section cart-section" id="mycart">
+  <div class="section-header">
+    <p class="section-eyebrow">Shopping Bag</p>
+    <h2 class="section-title">My<em>Cart</em></h2>
+  </div>
+  <div class="cart-wrap">
+    <div id="cartItems" class="cart-items">
+      <div class="cart-empty">Your cart is empty. Add a product to see it here.</div>
+    </div>
+    <div class="cart-summary">
+      <div>
+        <div class="cart-total-label">Cart Total</div>
+        <div class="cart-total" id="cartTotal">₹0</div>
+      </div>
+      <button class="checkout-btn" onclick="checkoutCart()">Checkout</button>
+    </div>
+  </div>
+</section>
 <section class="section occasion-section" id="occasions">
   <div class="section-header">
     <p class="section-eyebrow">✦ Shop by Occasion</p>
@@ -659,7 +929,7 @@
 <!-- ── FEATURES ── -->
 <section class="section">
   <div class="section-header">
-    <p class="section-eyebrow">✦ Why Femmona</p>
+    <p class="section-eyebrow">✦ Why FLORA</p>
     <h2 class="section-title">Crafted with <em>Love</em></h2>
   </div>
   <div class="features-grid">
@@ -684,7 +954,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <span class="logo">Femmo<span style="color:var(--gold);font-style:italic">na</span></span>
+      <span class="logo"><span class="floral-logo"><span class="logo-name">FLORA</span><span class="logo-leaf-one"></span><span class="logo-flower-left"></span><span class="logo-leaf-two"></span></span></span>
       <p>Celebrating India's textile heritage through contemporary ethnic wear. Wear your culture, wear your story.</p>
     </div>
     <div class="footer-col">
@@ -710,7 +980,6 @@
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
-        <li><a href="#">Our Story</a></li>
         <li><a href="#">Artisans</a></li>
         <li><a href="#">Sustainability</a></li>
         <li><a href="#">Press</a></li>
@@ -719,7 +988,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2025 Femmona. All rights reserved.</span>
+    <span>© 2025 FLORA. All rights reserved.</span>
     <span>Made with ♥ for Indian Women</span>
   </div>
 </footer>
@@ -732,7 +1001,7 @@
     <div class="chat-avatar">🪷</div>
     <div class="chat-header-info">
       <h3>Priya – Style Advisor</h3>
-      <p>Femmona AI · Ethnic Wear Expert</p>
+      <p>FLORA AI · Ethnic Wear Expert</p>
     </div>
     <div class="chat-status">
       <div class="status-dot"></div>
@@ -764,6 +1033,114 @@ const DB = {
   budgets: {budget:"Under ₹3,000", mid:"₹3,000–₹10,000", premium:"₹10,000–₹25,000", luxury:"Above ₹25,000"}
 };
 
+const CART_STORAGE_KEY = 'floraCart';
+
+function loadCart() {
+  try {
+    return JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]');
+  } catch (error) {
+    return [];
+  }
+}
+
+let cart = loadCart();
+
+function formatPrice(amount) {
+  return '₹' + amount.toLocaleString('en-IN');
+}
+
+function saveCart() {
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  } catch (error) {
+    // Some file:// browser environments block storage; the cart still works for this page load.
+  }
+}
+
+function addToCart(productId) {
+  const product = DB.products.find(item => item.id === productId);
+  if (!product) return;
+
+  const existing = cart.find(item => item.id === productId);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ id: product.id, qty: 1 });
+  }
+
+  saveCart();
+  renderCart();
+  document.getElementById('mycart').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function changeCartQty(productId, change) {
+  const item = cart.find(cartItem => cartItem.id === productId);
+  if (!item) return;
+
+  item.qty += change;
+  if (item.qty <= 0) {
+    cart = cart.filter(cartItem => cartItem.id !== productId);
+  }
+
+  saveCart();
+  renderCart();
+}
+
+function removeFromCart(productId) {
+  cart = cart.filter(item => item.id !== productId);
+  saveCart();
+  renderCart();
+}
+
+function renderCart() {
+  const cartItems = document.getElementById('cartItems');
+  const cartCount = document.getElementById('cartCount');
+  const cartTotal = document.getElementById('cartTotal');
+  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+  const totalPrice = cart.reduce((sum, item) => {
+    const product = DB.products.find(p => p.id === item.id);
+    return product ? sum + product.price * item.qty : sum;
+  }, 0);
+
+  cartCount.textContent = totalItems;
+  cartTotal.textContent = formatPrice(totalPrice);
+
+  if (!cart.length) {
+    cartItems.innerHTML = '<div class="cart-empty">Your cart is empty. Add a product to see it here.</div>';
+    return;
+  }
+
+  cartItems.innerHTML = cart.map(item => {
+    const product = DB.products.find(p => p.id === item.id);
+    if (!product) return '';
+    return `
+      <div class="cart-item">
+        <div class="cart-thumb">${product.category.charAt(0)}</div>
+        <div>
+          <div class="cart-name">${product.name}</div>
+          <div class="cart-meta">${product.fabric} - ${product.category}</div>
+        </div>
+        <div class="cart-qty">
+          <button class="qty-btn" onclick="changeCartQty(${product.id}, -1)">-</button>
+          <strong>${item.qty}</strong>
+          <button class="qty-btn" onclick="changeCartQty(${product.id}, 1)">+</button>
+          <button class="remove-btn" onclick="removeFromCart(${product.id})">Remove</button>
+        </div>
+        <div class="cart-line-price">${formatPrice(product.price * item.qty)}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function checkoutCart() {
+  if (!cart.length) {
+    alert('Your cart is empty. Please add a product first.');
+    return;
+  }
+  alert('Thank you! Your FLORA cart is ready for checkout.');
+}
+
+document.addEventListener('DOMContentLoaded', renderCart);
 function getRecommendations(occasion, budget) {
   let results = DB.products.filter(p =>
     (!occasion || p.occasion.some(o => o.toLowerCase().includes(occasion.toLowerCase()))) &&
@@ -791,7 +1168,7 @@ function closeChat() {
 }
 
 function initChat() {
-  addBotMsg("Namaste! 🙏 I'm **Priya**, your personal ethnic wear stylist at Femmona.\n\nI'll help you find the perfect outfit for any occasion. Let's start — what are you shopping for today?");
+  addBotMsg("Namaste! 🙏 I'm **Priya**, your personal ethnic wear stylist at FLORA.\n\nI'll help you find the perfect outfit for any occasion. Let's start — what are you shopping for today?");
   setQuickReplies(["💍 Wedding", "🪔 Navratri / Festive", "👗 Casual Wear", "💒 Bridal", "🌙 Eid / Mehndi"]);
 }
 
